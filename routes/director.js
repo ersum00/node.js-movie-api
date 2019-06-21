@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+mongoose.set('useCreateIndex', true);
 //Models
 const Director = require('../models/Director');
 
 router.get('/',(req,res) => {
- const promise=Director.aggregate([{
+ const promise= Director.aggregate([{
      $lookup: {
       from: 'movies',
       localField: '_id',
